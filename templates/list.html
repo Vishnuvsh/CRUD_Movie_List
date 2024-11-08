@@ -1,0 +1,60 @@
+
+<style>
+
+  .arj{
+    background-image: url(../static/movie3.avif);
+    background-size: cover;
+    height: 100vh;
+    text-align: center;
+   }
+   .assu{
+    margin-left: 520px;
+    margin-top: 90px;
+   }
+</style>
+
+    <div class="arj"><br><br><br>
+      {% extends 'blanklyt.html' %} {% load static %} {% block content %}
+    
+    
+    {% for obj in recent_movies %}
+    <p>{{ obj.title | upper }}</p>
+    {% endfor %}
+    
+    
+    
+    <h3>List Movies  {{ visits }} times visited </h3>
+    
+    <div class="assu">
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Summary</th>
+        <th>Year</th>
+        <th>Edit/Delete</th>
+      </tr>
+    
+      {% for obj in movies %}
+    
+      <tr>
+        <td>{{ obj.title | upper }}</td>
+        <td>
+          <p>summary : {{ obj.summary | default:"no data available" }}</p>
+        </td>
+        <td>
+          <h4>year : {{ obj.year }}</h4>
+        </td>
+        <td>
+          <a href="{% url 'edit' obj.id %}">edit</a>/<a
+            href="{% url 'delete' obj.id %}"
+            >delete</a
+          >
+        </td>
+      </tr>
+    
+      {% endfor %}
+    </table>
+    {% endblock content %}
+    
+    </div>
+    </div>
